@@ -30,6 +30,8 @@
   }
   /* transform: translate(-50%, -50%);  tõmbame boxi 50% tagasi, muidu võetakse algus keskkohast ja see pole ekraani ekeskkoht*/
 
+  //et läheks tööle clip-path ka teistes brwserites, väga uus asi css-s
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 }
 /*clip-path   nähtava osa kordinaadid vasakul üleval, paremal yleval jne aga saab ka keerulisemad kujundid
