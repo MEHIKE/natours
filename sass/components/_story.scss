@@ -1,0 +1,89 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 4rem 6rem rgba($color-black, 0.1);
+  //mitte otse värgv aga rgba et viso oleks taga ja sisu oleks näha
+  background-color: rgba($color-white, 0.6);
+  border-radius: 3px;
+  padding: 6rem;
+  //vahe vasakust servast
+  padding-left: 9rem;
+  font-size: $default-font-size;
+  //teeme shape, kasti kaldu aga koos sisuga läheb
+  transform: skewX(-12deg);
+
+  //tõmbame kaldus kasti sees oleva sisu tagasi sirgeks aga siin see kahjuks ei toimigi vaid peab tegema mõlemas eraldi
+  /*& > * {
+    //allolev mõjub aind tekstile, mitte pildile
+    transform: skewX(12deg);
+  }*/
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+
+    //object left side
+    float: left;
+    //shape like a circle. vectorized shape. radius. object should be float(d) width and height
+    //näitab milline peaks olema
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+
+    //siiani on pil nagu kast aga tekst juba jooseb nagu ringi järgi aga edasi teeme ringiks
+    //muudab tegelikult kujundit
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    //teeme ruumi, et tekst ei oleks kohe pildi otsas vaid vahe sees
+    //lisaks skew tagasi tõmbamine eraldi
+    transform: translateX(-3rem) skewX(12deg);
+    position: relative;
+  }
+
+  &__img {
+    //peab olema width aga seekord hoopis height, kuna pilt on laiem kui kõrgem ja alt jääks nii tyhjaks
+    height: 100%;
+    //kuna pildo box pole tegelikkuses õigel kohal vaid ulatub palju paremale ja ei saa udustada siis:
+    //scale selleks et saaks udustada
+    transform: translateX(-4rem) scale(1.4);
+    //kui transformide käigus piltidega midagi imeliiku toimub, siis enamasti aitab
+    backface-visibility: hidden;
+    transition: all 0.5s;
+  }
+
+  &__text {
+    //skew tagasi tõmbamine siin ja shape juures
+    transform: skewX(12deg);
+  }
+
+  &__caption {
+    //abslute pärast peab ülemuse juures olema relative
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    //ettagasi tõmmata ja oleks keskel.aga... see 20% sellepärast et nimi tõuseb kohale kui hover teha nagunii, muidu on liiga kõrgel kui seisma jääb
+    transform: translate(-50%, 20%);
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    //et poleks alguses näha vaid hoveri puhul alles
+    opacity: 0;
+    //et tuleks effect
+    transition: all 0.5s;
+    //kuna lõpus animationil tekib kerge viga, movement, siis parandame selle
+    backface-visibility: hidden;
+  }
+
+  &:hover &__caption {
+    //nähtavaks hoveri puhul
+    opacity: 1;
+    //tõstame kohale
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1);
+    //selleks et hägustada võib kasutada filtereid, lisaks võtame tumedamaks brightnessi
+    filter: blur(3px) brightness(80%);
+  }
+}
