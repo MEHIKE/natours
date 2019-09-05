@@ -1,4 +1,6 @@
 .btn {
+  //esimene on selleks et button elemendile ka mõjuks kuna sellel pole link ja visited attribuute
+  &,
   &:link,
   &:visited {
     text-transform: uppercase;
@@ -9,6 +11,10 @@
     transition: all 0.2s;
     position: relative;
     font-size: $default-font-size;
+
+    //Change for a button element
+    border: none;
+    cursor: pointer;
   }
   /* link ja visited on pseudo class. nagu hover jne
 inline-block et ei tuleks teiste peale
@@ -29,7 +35,9 @@ scale suurendab
   }
   /*black shadow but 20% opacituy*/
 
-  &:active {
+  &:active,
+  &:focus {
+    outline: none;
     transform: translateY(-1px);
     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
   }
