@@ -185,7 +185,9 @@
   }
 
   //kuna siin on vaja palju ringi kirjutada, siis kopime kogu asja siia ja muudame vajalikku ja kustutame mittevajaliku osa
-  @include respond(tab-port) {
+  //@include respond(tab-port) {
+  //meil oli card backside ja seal nupud aga tab-del on suur ekraan aga seal pole hoverit, selle saab media queryga ikka kätte
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
     //kuna enam pole kahte külge samasuuruseks vaja ajada, siis auto
     height: auto;
     border-radius: 3px;
