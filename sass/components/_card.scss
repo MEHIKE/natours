@@ -87,7 +87,7 @@
           $color-secondary-light,
           $color-secondary-dark
         ),
-        url("../img/nat-5.jpg");
+        url('../img/nat-5.jpg');
     }
 
     &--2 {
@@ -96,7 +96,7 @@
           $color-primary-light,
           $color-primary-dark
         ),
-        url("../img/nat-6.jpg");
+        url('../img/nat-6.jpg');
     }
 
     &--3 {
@@ -105,7 +105,7 @@
           $color-tertiary-light,
           $color-tertiary-dark
         ),
-        url("../img/nat-7.jpg");
+        url('../img/nat-7.jpg');
     }
   }
 
@@ -181,5 +181,45 @@
   &__price-value {
     font-size: 6rem;
     font-weight: 100;
+  }
+
+  //kuna siin on vaja palju ringi kirjutada, siis kopime kogu asja siia ja muudame vajalikku ja kustutame mittevajaliku osa
+  @include respond(tab-port) {
+    //kuna enam pole kahte külge samasuuruseks vaja ajada, siis auto
+    height: auto;
+
+    &__side {
+      height: auto;
+
+      position: relative;
+      border-radius: 3px;
+
+      &--back {
+        transform: rotateY(0);
+      }
+    }
+
+    &:hover &__side--front {
+      transform: rotateY(0);
+    }
+
+    //BACK SIDE STYLING
+    &__cta {
+      position: relative;
+      top: 0%;
+      left: 0;
+      //et oleks täiesti keskel
+      transform: translate(0);
+      width: 100%;
+      padding: 4rem;
+    }
+
+    &__price-box {
+      margin-bottom: 3rem;
+    }
+
+    &__price-value {
+      font-size: 6rem;
+    }
   }
 }
