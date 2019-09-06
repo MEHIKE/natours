@@ -12,6 +12,17 @@
   //teeme shape, kasti kaldu aga koos sisuga läheb
   transform: skewX(-12deg);
 
+  @include respond(tab-port) {
+    width: 100%;
+    padding: 4rem;
+    //vahe vasakust servast
+    padding-left: 7rem;
+  }
+
+  @include respond(phone) {
+    transform: skewX(0);
+  }
+
   //tõmbame kaldus kasti sees oleva sisu tagasi sirgeks aga siin see kahjuks ei toimigi vaid peab tegema mõlemas eraldi
   /*& > * {
     //allolev mõjub aind tekstile, mitte pildile
@@ -29,14 +40,26 @@
     -webkit-shape-outside: circle(50% at 50% 50%);
     shape-outside: circle(50% at 50% 50%);
 
-    //siiani on pil nagu kast aga tekst juba jooseb nagu ringi järgi aga edasi teeme ringiks
-    //muudab tegelikult kujundit
-    -webkit-clip-path: circle(50% at 50% 50%);
-    clip-path: circle(50% at 50% 50%);
+    
     //teeme ruumi, et tekst ei oleks kohe pildi otsas vaid vahe sees
     //lisaks skew tagasi tõmbamine eraldi
     transform: translateX(-3rem) skewX(12deg);
     position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+
+    @supports (clip-path: polygon(0 0)) or  (-webkit-clip-path: polygon(0 0)) {
+      //et läheks tööle clip-path ka teistes brwserites, väga uus asi css-s
+      //siiani on pil nagu kast aga tekst juba jooseb nagu ringi järgi aga edasi teeme ringiks
+      //muudab tegelikult kujundit
+      -webkit-clip-path: circle(50% at 50% 50%);
+      clip-path: circle(50% at 50% 50%);
+      border-radius: none;
+     }
+
+    @include respond(phone) {
+      transform: translateX(-3rem) skewX(0);
+    }
   }
 
   &__img {
@@ -53,6 +76,10 @@
   &__text {
     //skew tagasi tõmbamine siin ja shape juures
     transform: skewX(12deg);
+
+    @include respond(phone) {
+      transform: tskewX(0);
+    }
   }
 
   &__caption {
